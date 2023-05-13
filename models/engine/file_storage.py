@@ -49,5 +49,3 @@ class FileStorage(object):
                 }
         except FileNotFoundError:
             pass
-        except json.decoder.JSONDecodeError:
-            pass

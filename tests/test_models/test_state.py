@@ -1,22 +1,29 @@
 #!/usr/bin/env python3
-"""Test module for BaseModel class"""
+"""Modeule for testing the State class"""
+
 import unittest
 import uuid
 from datetime import datetime
 
+from models.state import State
 from models.base_model import BaseModel
 from models import storage
 
 
-class TestBaseModelNoArg(unittest.TestCase):
-    """Class for testing initialization of BaseModel with no args"""
+class TestStateInstanciatesNoArgs(unittest.TestCase):
+    """Class testing instanciation of State Class without arguments"""
 
     def setUp(self):
-        """Setup variables to be used in tests"""
-        self.instance = BaseModel()
+        """Setup instance to be used in testing"""
+        self.instance = State()
 
-    def test_no_args_instantiates(self):
-        """Test that an instance is created when no arguments are passed"""
+    def test_state_init_no_args(self):
+        """Test the initialization of a State instance without any
+        arguments given."""
+        self.assertIsInstance(self.instance, State)
+
+    def test_state_inherits_from_basemodel(self):
+        """Test that the State class inherits from the BaseModel class"""
         self.assertIsInstance(self.instance, BaseModel)
 
     def test_id_is_str(self):
@@ -45,38 +52,38 @@ class TestBaseModelNoArg(unittest.TestCase):
     def test_save_after_creating_new_object(self):
         """Test that the newly created object is saved"""
         objects_before = storage.all().copy()
-        BaseModel()
+        State()
         self.assertNotEqual(objects_before, storage.all())
 
 
-class TestBaseModelWithArgs(unittest.TestCase):
-    """Class for testing initialization of BaseModel with args"""
+class TestStateIntanciateWithAgs(unittest.TestCase):
+    """Class for testing instanciation of a State with args"""
 
     def test_args_instantiates(self):
         """Test that a completely new instance is created when *args is given
         despite of the values in args."""
         args = (str(uuid.uuid4()), datetime.now(), datetime.now())
-        instance = BaseModel(*args)
+        instance = State(*args)
         self.assertNotEqual(instance.id, args[0])
         self.assertNotEqual(instance.created_at, args[1])
         self.assertNotEqual(instance.updated_at, args[2])
 
     def test_instantiation_with_single_integer(self):
         """Test instanciation with a single value"""
-        instance = BaseModel(1)
+        instance = State(1)
         self.assertIsInstance(instance.id, str)
         self.assertIsInstance(instance.created_at, datetime)
         self.assertIsInstance(instance.updated_at, datetime)
 
 
-class TestBaseModelWithKwargs(unittest.TestCase):
-    """Class for testing initialization of BaseModel with kwargs"""
+class TestStateWithKwargs(unittest.TestCase):
+    """Class for testing initialization of State with kwargs"""
 
     def setUp(self):
         """Setup variables to be used in tests"""
-        self.instance = BaseModel()
+        self.instance = State()
         self.kwargs = self.instance.to_dict()
-        self.new = BaseModel(**self.kwargs)
+        self.new = State(**self.kwargs)
 
     def test_kwargs_instanciates(self):
         """Test that an instance is loaded when kwargs is given. No new
@@ -106,41 +113,41 @@ class TestBaseModelWithKwargs(unittest.TestCase):
         an iso formatted string"""
         self.kwargs['created_at'] = datetime.now()
         with self.assertRaises(TypeError):
-            BaseModel(**self.kwargs)
+            State(**self.kwargs)
         self.kwargs['created_at'] = '12:00:00'
         with self.assertRaises(ValueError):
-            BaseModel(**self.kwargs)
+            State(**self.kwargs)
 
     def test_updated_at_not_iso_format(self):
         """Test that an error occurs when the updated_at value is not
         an iso formatted string"""
         self.kwargs['updated_at'] = datetime.now()
         with self.assertRaises(TypeError):
-            BaseModel(**self.kwargs)
+            State(**self.kwargs)
         self.kwargs['updated_at'] = '12:00:00'
         with self.assertRaises(ValueError):
-            BaseModel(**self.kwargs)
+            State(**self.kwargs)
 
     def test_id_not_uuid4(self):
         """Test that no error occurs when id in kwargs is not of type
         uuid4."""
         self.kwargs['id'] = '123'
-        self.assertTrue(BaseModel(**self.kwargs))
+        self.assertTrue(State(**self.kwargs))
         self.kwargs['id'] = 123
-        self.assertTrue(BaseModel(**self.kwargs))
+        self.assertTrue(State(**self.kwargs))
 
     def test_empty_kwargs(self):
         """Test that an empty kwargs causes new instance to be creates"""
         self.kwargs = {}
         objects_before = storage.all().copy()
-        BaseModel(**self.kwargs)
+        State(**self.kwargs)
         self.assertTrue(objects_before != storage.all())
 
     def test_kwargs_missing_one_attribute(self):
         """Test that a kwargs missing an attribute doesn't cause new object
         creation"""
         del self.kwargs['id']
-        new_instance = BaseModel(**self.kwargs)
+        new_instance = State(**self.kwargs)
         with self.assertRaises(AttributeError):
             new_instance.id
 
@@ -150,112 +157,78 @@ class TestBaseModelWithKwargs(unittest.TestCase):
         self.assertFalse(self.instance is self.new)
 
 
-class TestBaseModelWithArgsAndKwargs(unittest.TestCase):
+class TestStateWithArgsAndKwargs(unittest.TestCase):
     """Class for testing instantiation with both args and kwargs"""
 
     def setUp(self):
         """Setup instance to be used in testing"""
-        self.instance = BaseModel()
+        self.instance = State()
         self.kwargs = self.instance.to_dict()
         self.args = (uuid.uuid4(), datetime.now(), datetime.now())
 
     def test_args_and_kwargs_instanciates(self):
         """Test that kwargs is used instead of args in instanciation."""
-        new_instance = BaseModel(*self.args, **self.kwargs)
+        new_instance = State(*self.args, **self.kwargs)
         self.assertEqual(self.instance.__dict__, new_instance.__dict__)
 
     def test_no_new_object_is_created(self):
         """Test that a new object is not added to the objects in storage"""
         before_loading = storage.all().copy()
-        BaseModel(*self.args, **self.kwargs)
+        State(*self.args, **self.kwargs)
         self.assertTrue(before_loading == storage.all())
 
 
-class TestBaseModelStrMethod(unittest.TestCase):
-    """Class for testing the __str__ method"""
+class TestStatePublicClassAttributes(unittest.TestCase):
+    """Class for testing the public class attributes of State"""
+
+    def setUp(self):
+        """Setup instance to be used in testing"""
+        self.instance = State()
+
+    def test_all_public_attributes_exist(self):
+        """Test that all public attributes have been declared"""
+        public_attrs = ['name']
+        for attr in public_attrs:
+            self.assertTrue(hasattr(self.instance, attr))
+
+    def test_type_of_public_class_attrs(self):
+        """Test that all public attributes are of correct type"""
+        self.assertIsInstance(self.instance.name, str)
+
+    def test_default_value_of_public_attrs(self):
+        """Test that all public attributes have been assigned correct
+        default values"""
+        self.assertEqual(self.instance.name, "")
+
+    def test_assigning_name(self):
+        """Test that assigning name changes it effectively"""
+        State.name = 'Nairobi'
+        self.assertEqual(self.instance.name, 'Nairobi')
+        self.instance.name = 'Meru'
+        self.assertEqual(self.instance.name, 'Meru')
+        State.name = ''
+
+
+class TestStateStrMethod(unittest.TestCase):
+    """Class for testing the __str__ method """
 
     def test_str_representation(self):
-        """Test that the str representation of the BaseModel instance is
+        """Test that the str representation of the State instance is
         formatted correctly"""
-        instance = BaseModel()
+        instance = State()
         expected = "[{}] ({}) {}".format(
             instance.__class__.__name__, instance.id,
             instance.__dict__)
         self.assertEqual(expected, str(instance))
 
 
-class TestBaseModelSaveMethod(unittest.TestCase):
-    """Class for testing save method of BaseModel"""
-
-    def setUp(self):
-        """Setup variables for testing"""
-        self.instance = BaseModel()
-
-    def test_save_method_updates_updated_at(self):
-        """Test that the save method updates the updated_at attribute"""
-        first_updated_at = self.instance.updated_at
-        self.instance.save()
-        self.assertNotEqual(first_updated_at, self.instance.updated_at)
-
-    def test_save_method_calls_save_on_storage(self):
-        """Test that the save method calls save method on storage so as
-        to write the new updated object to the file.json"""
-        key = f'BaseModel.{self.instance.id}'
-        first_updated_at = storage.all()[key]
-        self.instance.save()
-        storage.reload()
-        self.assertNotEqual(first_updated_at, storage.all()[key])
-
-    def test_save_method_does_not_affect_other_attributes(self):
-        """Test that the save method does not affect created_at and id"""
-        created_at, id = self.instance.created_at, self.instance.id
-        self.instance.save()
-        self.assertEqual(created_at, self.instance.created_at)
-        self.assertEqual(id, self.instance.id)
-
-    def test_save_method_with_argument(self):
-        """Test that the save method raises an error when called with an
-        argument"""
-        with self.assertRaises(TypeError):
-            self.instance.save(12)
-
-
-class TestBaseModelToDictMethod(unittest.TestCase):
+class TestStateToDictMethod(unittest.TestCase):
     """Class for testing the to_dict method"""
 
     def setUp(self):
         """Setup variables to be used in tests"""
-        self.instance = BaseModel()
-
-    def test_to_dict_return_value_type_is_dctionary(self):
-        """Test that the to_dict method returns a dictionary"""
-        self.assertIsInstance(self.instance.to_dict(), dict)
-
-    def test_to_dict_return_value_has_class_key(self):
-        """Test that the to_dict return value has the __class__ key"""
-        self.assertTrue(self.instance.to_dict()['__class__'])
+        self.instance = State()
 
     def test_value_of_class_key(self):
-        """Test that the __class__ key has the correct class name
-        ie. BaseModel"""
-        self.assertEqual(self.instance.to_dict()['__class__'], 'BaseModel')
-
-    def test_created_at_iso_format_in_returned_dictionary(self):
-        """Test that the created_at value is in iso format"""
-        self.assertIsInstance(self.instance.to_dict()['created_at'], str)
-
-    def test_updated_at_iso_format_in_returned_dictionary(self):
-        """Test that the updated_at value is in iso format"""
-        self.assertIsInstance(self.instance.to_dict()['updated_at'], str)
-
-    def test_all_values_in_dict_are_in_returned_dictionary(self):
-        """Test that the returned dictionary contains all values in the
-        __dict__ of the instance"""
-        instance_dict = self.instance.to_dict()
-        for key in self.instance.__dict__.keys():
-            self.assertTrue(key in instance_dict)
-
-    def test_to_dict_with_arguments(self):
-        """Test that to_dict raises an error when called with an argument"""
-        with self.assertRaises(TypeError):
-            self.instance.to_dict(12)
+        """Test that the __class__ key has the correct class name ie. State"""
+        self.assertEqual(self.instance.to_dict()['__class__'], 'State')

@@ -109,8 +109,15 @@ class TestFileStorageSaveMethod(unittest.TestCase):
         storage.save()
         with open('file.json', 'r') as f:
             after_saving = json.load(f)
-        self.assertTrue(len(before_saving) < len(after_saving))
         self.assertEqual(len(after_saving) - len(before_saving), 5)
+
+    def test_saving_to_none_existing_file(self):
+        """Test that save method creates the file if it doesn't exist"""
+        os.remove('file.json')
+        BaseModel()
+        storage.save()
+        with open('file.json', 'r') as f:
+            self.assertTrue(f.read())
 
     def test_passing_argument_to_save(self):
         """Test that passing an argument to save raises TypeError"""
@@ -131,12 +138,30 @@ class TestFileStorageReloadMethod(unittest.TestCase):
     def tearDown(self):
         """Clean up after the tests"""
 
-        for obj in self.objects.values():
-            storage.new(obj)
-        storage.save()
+        if not storage.all():
+            for obj in self.objects.values():
+                storage.new(obj)
+            storage.save()
 
-    def test_reload_from_unsvailable_file(self):
+    def test_reload_from_unavailable_file(self):
         """Test that reloading from a none existing file doesn't cause
         any errors"""
         os.remove('file.json')
         storage.reload()
+
+    def test_reload_from_empty_dictionary(self):
+        """Test that reloading from file containing empty dictionary
+        doesn't cause any errors"""
+        with open('file.json', 'w') as f:
+            f.write("{}")
+        storage.reload()
+        self.assertEqual(storage.all(), {})
+
+    def test_reload_from_none_empty_dictionary(self):
+        """Test that reloading works on a file containing valid dictionary"""
+        storage.reload()
+
+    def test_passing_argument_to_reload(self):
+        """Test that an error occurs if reload receives argument"""
+        with self.assertRaises(TypeError):
+            storage.reload(1)
