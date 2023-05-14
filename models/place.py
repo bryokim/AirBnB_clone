@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Module containing Place class implementation."""
 from models.base_model import BaseModel
 

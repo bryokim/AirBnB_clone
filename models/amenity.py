@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Module containing Amenity class implementation."""
 from models.base_model import BaseModel
 
