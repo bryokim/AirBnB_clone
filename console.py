@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
                     break
                 i += 1
 
-        return (key, attr_name, attr_value.strip(' "\''))
+        return (key, attr_name.strip('"\''), attr_value.strip(' "\''))
 
     def do_update(self, line):
         """Updates an instance based on class name and id by adding or
