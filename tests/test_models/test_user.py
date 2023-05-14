@@ -274,3 +274,7 @@ class TestUserToDictMethod(unittest.TestCase):
     def test_value_of_class_key(self):
         """Test that the __class__ key has the correct class name ie. User"""
         self.assertEqual(self.instance.to_dict()['__class__'], 'User')
+
+
+if __name__ == '__main__':
+    unittest.main()

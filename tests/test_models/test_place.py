@@ -201,3 +201,7 @@ class TestPlaceToDictMethod(unittest.TestCase):
     def test_value_of_class_key(self):
         """Test that the __class__ key has the correct class name ie. Place"""
         self.assertEqual(self.instance.to_dict()['__class__'], 'Place')
+
+
+if __name__ == '__main__':
+    unittest.main()

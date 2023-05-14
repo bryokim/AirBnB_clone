@@ -165,3 +165,7 @@ class TestFileStorageReloadMethod(unittest.TestCase):
         """Test that an error occurs if reload receives argument"""
         with self.assertRaises(TypeError):
             storage.reload(1)
+
+
+if __name__ == '__main__':
+    unittest.main()

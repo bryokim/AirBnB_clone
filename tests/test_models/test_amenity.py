@@ -202,3 +202,7 @@ class TestAmenityToDictMethod(unittest.TestCase):
         """Test that the __class__ key has the correct class name
         ie. Amenity"""
         self.assertEqual(self.instance.to_dict()['__class__'], 'Amenity')
+
+
+if __name__ == '__main__':
+    unittest.main()

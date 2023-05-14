@@ -259,3 +259,7 @@ class TestBaseModelToDictMethod(unittest.TestCase):
         """Test that to_dict raises an error when called with an argument"""
         with self.assertRaises(TypeError):
             self.instance.to_dict(12)
+
+
+if __name__ == '__main__':
+    unittest.main()
