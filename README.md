@@ -1,6 +1,6 @@
 # AirBnB_clone
 
-In this project I endeavor to buil an AirBnB clone.
+In this project I endeavor to build an AirBnB clone.
 
 The first step is to write classes and a command interpreter to manage my
 objects.
@@ -59,7 +59,7 @@ kim@eternity:~/Dev/ALX/AirBnB_clone$
 The `quit` command can be used to exit the interpreter. You can also enter
 `EOF` or press `Ctrl-D` to exit.
 
-Nothing happens when an empty line + ENTER when entered as a command.
+Nothing happens when an `empty line + ENTER` is entered as command.
 
 The above snippet is just a few of the operations that can be done by the
 command interpreter. You can find the above and more operations explained
@@ -105,9 +105,7 @@ It has two syntaxes:
 - `show <class name> <id>`
 - `<class name>.show(<id>)`
 
-Both syntaxes produce same results, the choice is up to you.
-
-If the class name is missing or an invalid class is given of invalid id, an
+If the class name is missing or an invalid class or invalid id is given, an
 error message is printed as show below.
 
 ```Text
@@ -155,7 +153,7 @@ It has two syntaxes:
 - `destroy <class name> <id>`
 - `<class name>.destroy(<id>)`
 
-If the class name is missing or an invalid class is given of invalid id, an
+If the class name is missing or an invalid class or invalid id is given, an
 error message is printed as show below.
 
 ```Text
