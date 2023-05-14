@@ -10,12 +10,3 @@ class User(BaseModel):
     password = ''
     first_name = ''
     last_name = ''
-
-    def __init__(self, *args, **kwargs):
-        """Initialize a new User instance.
-
-        Args:
-            args (tuple): Tuple of attribute values. Not used.
-            kwargs (dict): Dictionary of attribute/value pairs.
-        """
-        super().__init__(*args, **kwargs)

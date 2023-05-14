@@ -17,12 +17,3 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_ids = []
-
-    def __init__(self, *args, **kwargs):
-        """Initialize a Place instance.
-
-        Args:
-            args (tuple): Tuple of attribute values. Not used.
-            kwargs (dict): Dictionary of attribute/value pairs.
-        """
-        super().__init__(*args, **kwargs)

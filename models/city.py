@@ -8,12 +8,3 @@ class City(BaseModel):
 
     name = ''
     state_id = ''
-
-    def __init__(self, *args, **kwargs):
-        """Initialize a City instance.
-
-        Args:
-            args (tuple): Tuple of attribute values. Not used.
-            kwargs (dict): Dictionary of attribute/value pairs.
-        """
-        super().__init__(*args, **kwargs)
