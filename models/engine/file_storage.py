@@ -37,8 +37,23 @@ class FileStorage(object):
     def reload(self):
         """Deserealizes the json file to __objects"""
 
-        from . import import_all_classes
-        classes = import_all_classes()
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.place import Place
+        from models.amenity import Amenity
+        from models.city import City
+        from models.review import Review
+        from models.state import State
+
+        classes = {
+            'User': User,
+            'BaseModel': BaseModel,
+            'Place': Place,
+            'Amenity': Amenity,
+            'City': City,
+            'State': State,
+            'Review': Review,
+        }
 
         try:
             with open(FileStorage.__file_path, "r") as f:
