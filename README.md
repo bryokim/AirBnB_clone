@@ -351,7 +351,7 @@ may arise.
 
 ### **More Info**
 
-To find out more about inividual classes and methods, you can look into
+To find out more about individual classes and methods, you can look into
 the documentation of the specific class or method in the module it's found in.
 
 ### Author(s)
