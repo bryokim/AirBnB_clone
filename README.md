@@ -356,4 +356,4 @@ the documentation of the specific class or method in the module it's found in.
 
 ### Author(s)
 
-[Brian Kimathi] (https://github.com/bryokim)
+[Brian Kimathi](https://github.com/bryokim)
