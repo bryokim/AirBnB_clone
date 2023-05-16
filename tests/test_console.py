@@ -128,5 +128,55 @@ class TestConsoleShow(unittest.TestCase):
         self.assertEqual(printed_str, "** no instance found **")
 
 
+class TestConsoleQuit(unittest.TestCase):
+    """Class for testing the quit command"""
+
+    def test_quit(self):
+        """Test that the quit command exits the interpreter"""
+        with patch('sys.stdout', StringIO()) as output:
+            HBNBCommand().onecmd(f'quit')
+        printed_str = output.getvalue()
+        self.assertEqual(printed_str, '')
+
+
+class TestConsoleEOF(unittest.TestCase):
+    """Class for testing the EOF command"""
+
+    def test_EOF(self):
+        """Test that the EOF command exits the interpreter"""
+        with patch('sys.stdout', StringIO()) as output:
+            HBNBCommand().onecmd('EOF')
+        printed_str = output.getvalue()
+        self.assertEqual(printed_str, '')
+
+
+class TestConsoleHelp(unittest.TestCase):
+    """Class for testing the help command"""
+
+    def test_help_without_argument(self):
+        """Test the help command without any arguments"""
+        expected = """\nDocumented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update\n"""
+        with patch('sys.stdout', StringIO()) as output:
+            HBNBCommand().onecmd(f'help')
+        printed_str = output.getvalue()[:-1]
+        self.assertEqual(printed_str, expected)
+
+    def test_help_with_argument(self):
+        """Test help with an argument"""
+        expected = """\
+Prints the string representation of an instance based on class
+        name and id.
+
+        Args:
+            line (str): Class name and id.
+"""
+        with patch('sys.stdout', StringIO()) as output:
+            HBNBCommand().onecmd(f'help show')
+        printed_str = output.getvalue()[:-1].strip(' ')
+        self.assertEqual(printed_str, expected)
+
+
 if __name__ == '__main__':
     unittest.main()
