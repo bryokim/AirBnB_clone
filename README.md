@@ -1,6 +1,6 @@
 # AirBnB_clone
 
-In this project I endeavor to buil an AirBnB clone.
+In this project I endeavor to build an AirBnB clone.
 
 The first step is to write classes and a command interpreter to manage my
 objects.
@@ -59,7 +59,7 @@ kim@eternity:~/Dev/ALX/AirBnB_clone$
 The `quit` command can be used to exit the interpreter. You can also enter
 `EOF` or press `Ctrl-D` to exit.
 
-Nothing happens when an empty line + ENTER when entered as a command.
+Nothing happens when an `empty line + ENTER` is entered as command.
 
 The above snippet is just a few of the operations that can be done by the
 command interpreter. You can find the above and more operations explained
@@ -105,9 +105,7 @@ It has two syntaxes:
 - `show <class name> <id>`
 - `<class name>.show(<id>)`
 
-Both syntaxes produce same results, the choice is up to you.
-
-If the class name is missing or an invalid class is given of invalid id, an
+If the class name is missing or an invalid class or invalid id is given, an
 error message is printed as show below.
 
 ```Text
@@ -155,7 +153,7 @@ It has two syntaxes:
 - `destroy <class name> <id>`
 - `<class name>.destroy(<id>)`
 
-If the class name is missing or an invalid class is given of invalid id, an
+If the class name is missing or an invalid class or invalid id is given, an
 error message is printed as show below.
 
 ```Text
@@ -232,7 +230,7 @@ d4a1f54d-9c69-48b4-9e1d-34a6eda90299
 ["[State] (3d280bab-8318-4fc2-be4d-9ede4ead4191) {'id': '3d280bab-8318-4fc2-be4d-9ede4ead4191', 'created_at': datetime.datetime(2023, 5, 14, 14, 13, 59, 916280), 'updated_at': datetime.datetime(2023, 5, 14, 14, 13, 59, 916320)}", "[State] (d4a1f54d-9c69-48b4-9e1d-34a6eda90299) {'id': 'd4a1f54d-9c69-48b4-9e1d-34a6eda90299', 'created_at': datetime.datetime(2023, 5, 14, 14, 15, 8, 282666), 'updated_at': datetime.datetime(2023, 5, 14, 14, 15, 8, 282693)}"]
 (hbnb)
 (hbnb) all ClassNotFound
-** class does't exist **
+** class doesn't exist **
 (hbnb)
 (hbnb) Place.all()
 ["[Place] (5f688b64-5306-4a08-9761-f6deeb722ef4) {'id': '5f688b64-5306-4a08-9761-f6deeb722ef4', 'created_at': datetime.datetime(2023, 5, 14, 14, 12, 28, 132497), 'updated_at': datetime.datetime(2023, 5, 14, 14, 12, 28, 132522)}"]
@@ -280,7 +278,7 @@ The same happens when either the attribute name or the value is not given.
 ** instance not found **
 (hbnb)
 (hbnb) update ClassNotFound 500ffdec-d650-46af-87c3-a8d34bd8a2e2 last_name "Kim"
-** class does't exist **
+** class doesn't exist **
 (hbnb)
 (hbnb) update User 500ffdec-d650-46af-87c3-a8d34bd8a2e2
 ** attribute name missing **
@@ -353,9 +351,9 @@ may arise.
 
 ### **More Info**
 
-To find out more about inividual classes and methods, you can look into
+To find out more about individual classes and methods, you can look into
 the documentation of the specific class or method in the module it's found in.
 
 ### Author(s)
 
-Brian Kimathi
+- [Brian Kimathi](https://github.com/bryokim)
