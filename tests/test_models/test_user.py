@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Modeule for testing the User class"""
+"""Module for testing the User class"""
 
 import unittest
 import uuid
@@ -10,8 +10,8 @@ from models.base_model import BaseModel
 from models import storage
 
 
-class TestUserInstanciatesNoArgs(unittest.TestCase):
-    """Class testing instanciation of User Class without arguments"""
+class TestUserInstantiatesNoArgs(unittest.TestCase):
+    """Class testing instantiation of User Class without arguments"""
 
     def setUp(self):
         """Setup instance to be used in testing"""
@@ -56,8 +56,8 @@ class TestUserInstanciatesNoArgs(unittest.TestCase):
         self.assertNotEqual(objects_before, storage.all())
 
 
-class TestUserIntanciateWithAgs(unittest.TestCase):
-    """Class for testing instanciation of a User with args"""
+class TestUserInstantiateWithAgs(unittest.TestCase):
+    """Class for testing instantiation of a User with args"""
 
     def test_args_instantiates(self):
         """Test that a completely new instance is created when *args is given
@@ -69,7 +69,7 @@ class TestUserIntanciateWithAgs(unittest.TestCase):
         self.assertNotEqual(instance.updated_at, args[2])
 
     def test_instantiation_with_single_integer(self):
-        """Test instanciation with a single value"""
+        """Test instantiation with a single value"""
         instance = User(1)
         self.assertIsInstance(instance.id, str)
         self.assertIsInstance(instance.created_at, datetime)
@@ -96,7 +96,7 @@ class TestUserWithKwargs(unittest.TestCase):
         User.email = ""
         User.password = ""
 
-    def test_kwargs_instanciates(self):
+    def test_kwargs_instantiates(self):
         """Test that an instance is loaded when kwargs is given. No new
         instance is created"""
         self.assertEqual(self.new.__dict__, self.instance.__dict__)
@@ -114,7 +114,7 @@ class TestUserWithKwargs(unittest.TestCase):
         self.assertIsInstance(self.new.created_at, datetime)
 
     def test_updated_at_is_datetime_object(self):
-        """Test that updated_at is a dateime object derived from the
+        """Test that updated_at is a datetime object derived from the
         iso format string in kwargs"""
         self.assertEqual(type(self.new.updated_at), datetime)
         self.assertIsInstance(self.new.updated_at, datetime)
@@ -163,7 +163,7 @@ class TestUserWithKwargs(unittest.TestCase):
             new_instance.id
 
     def test_new_instance_is_not_original(self):
-        """Test that an instance loaded from anothers dictionary is not
+        """Test that an instance loaded from another dictionary is not
         identical to the original"""
         self.assertFalse(self.instance is self.new)
 
@@ -177,8 +177,8 @@ class TestUserWithArgsAndKwargs(unittest.TestCase):
         self.kwargs = self.instance.to_dict()
         self.args = (uuid.uuid4(), datetime.now(), datetime.now())
 
-    def test_args_and_kwargs_instanciates(self):
-        """Test that kwargs is used instead of args in instanciation."""
+    def test_args_and_kwargs_instantiates(self):
+        """Test that kwargs is used instead of args in instantiation."""
         new_instance = User(*self.args, **self.kwargs)
         self.assertEqual(self.instance.__dict__, new_instance.__dict__)
 
@@ -193,7 +193,7 @@ class TestUserPublicClassAttributes(unittest.TestCase):
     """Class for testing the public class attributes of User"""
 
     def setUp(self):
-        """Setup instane to be used in testing"""
+        """Setup instance to be used in testing"""
         self.instance = User()
 
     def test_all_public_attrs_exist(self):
@@ -227,7 +227,7 @@ class TestUserPublicClassAttributes(unittest.TestCase):
         User.email = ''
 
     def test_assigning_password(self):
-        """Test that assingning password changes it efectively"""
+        """Test that assigning password changes it effectively"""
         User.password = '1234'
         self.assertEqual(self.instance.password, '1234')
         self.instance.password = '5678'

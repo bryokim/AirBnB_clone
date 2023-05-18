@@ -190,7 +190,7 @@ class HBNBCommand(cmd.Cmd):
             obj.save()
 
     def do_count(self, line):
-        """Count the number of instaces of a given class
+        """Count the number of instances of a given class
 
         Args:
             line (str): Class name
@@ -219,6 +219,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split('.', 1)
         # Get arguments within the braces
         brace_args = args[1].split('(')[1].strip(')').split(',')
+        print(len(brace_args))
 
         arguments_tuple = (args[0],)  # class name
         if len(brace_args) >= 1:

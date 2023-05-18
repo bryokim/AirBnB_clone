@@ -17,7 +17,7 @@ class TestFileStorageAllMethod(unittest.TestCase):
     """Class for testing the all method"""
 
     def test_return_value_is_dict(self):
-        """Test that the all method retuns a dictionary"""
+        """Test that the all method returns a dictionary"""
         self.assertIsInstance(storage.all(), dict)
 
     def test_values_in_dict_are_from_BaseModel(self):

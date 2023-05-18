@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Modeule for testing the Review class"""
+"""Module for testing the Review class"""
 
 import unittest
 import uuid
@@ -10,8 +10,8 @@ from models.base_model import BaseModel
 from models import storage
 
 
-class TestReviewInstanciatesNoArgs(unittest.TestCase):
-    """Class testing instanciation of Review Class without arguments"""
+class TestReviewInstantiatesNoArgs(unittest.TestCase):
+    """Class testing instantiation of Review Class without arguments"""
 
     def setUp(self):
         """Setup instance to be used in testing"""
@@ -56,8 +56,8 @@ class TestReviewInstanciatesNoArgs(unittest.TestCase):
         self.assertNotEqual(objects_before, storage.all())
 
 
-class TestReviewIntanciateWithAgs(unittest.TestCase):
-    """Class for testing instanciation of a Review with args"""
+class TestReviewInstantiateWithAgs(unittest.TestCase):
+    """Class for testing instantiation of a Review with args"""
 
     def test_args_instantiates(self):
         """Test that a completely new instance is created when *args is given
@@ -69,7 +69,7 @@ class TestReviewIntanciateWithAgs(unittest.TestCase):
         self.assertNotEqual(instance.updated_at, args[2])
 
     def test_instantiation_with_single_integer(self):
-        """Test instanciation with a single value"""
+        """Test instantiation with a single value"""
         instance = Review(1)
         self.assertIsInstance(instance.id, str)
         self.assertIsInstance(instance.created_at, datetime)
@@ -85,7 +85,7 @@ class TestReviewWithKwargs(unittest.TestCase):
         self.kwargs = self.instance.to_dict()
         self.new = Review(**self.kwargs)
 
-    def test_kwargs_instanciates(self):
+    def test_kwargs_instantiates(self):
         """Test that an instance is loaded when kwargs is given. No new
         instance is created"""
         self.assertEqual(self.new.__dict__, self.instance.__dict__)
@@ -103,7 +103,7 @@ class TestReviewWithKwargs(unittest.TestCase):
         self.assertIsInstance(self.new.created_at, datetime)
 
     def test_updated_at_is_datetime_object(self):
-        """Test that updated_at is a dateime object derived from the
+        """Test that updated_at is a datetime object derived from the
         iso format string in kwargs"""
         self.assertEqual(type(self.new.updated_at), datetime)
         self.assertIsInstance(self.new.updated_at, datetime)
@@ -152,7 +152,7 @@ class TestReviewWithKwargs(unittest.TestCase):
             new_instance.id
 
     def test_new_instance_is_not_original(self):
-        """Test that an instance loaded from anothers dictionary is not
+        """Test that an instance loaded from another dictionary is not
         identical to the original"""
         self.assertFalse(self.instance is self.new)
 
@@ -166,8 +166,8 @@ class TestReviewWithArgsAndKwargs(unittest.TestCase):
         self.kwargs = self.instance.to_dict()
         self.args = (uuid.uuid4(), datetime.now(), datetime.now())
 
-    def test_args_and_kwargs_instanciates(self):
-        """Test that kwargs is used instead of args in instanciation."""
+    def test_args_and_kwargs_instantiates(self):
+        """Test that kwargs is used instead of args in instantiation."""
         new_instance = Review(*self.args, **self.kwargs)
         self.assertEqual(self.instance.__dict__, new_instance.__dict__)
 

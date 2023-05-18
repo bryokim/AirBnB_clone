@@ -62,7 +62,7 @@ class TestBaseModelWithArgs(unittest.TestCase):
         self.assertNotEqual(instance.updated_at, args[2])
 
     def test_instantiation_with_single_integer(self):
-        """Test instanciation with a single value"""
+        """Test instantiation with a single value"""
         instance = BaseModel(1)
         self.assertIsInstance(instance.id, str)
         self.assertIsInstance(instance.created_at, datetime)
@@ -78,7 +78,7 @@ class TestBaseModelWithKwargs(unittest.TestCase):
         self.kwargs = self.instance.to_dict()
         self.new = BaseModel(**self.kwargs)
 
-    def test_kwargs_instanciates(self):
+    def test_kwargs_instantiates(self):
         """Test that an instance is loaded when kwargs is given. No new
         instance is created"""
         self.assertEqual(self.new.__dict__, self.instance.__dict__)
@@ -96,7 +96,7 @@ class TestBaseModelWithKwargs(unittest.TestCase):
         self.assertIsInstance(self.new.created_at, datetime)
 
     def test_updated_at_is_datetime_object(self):
-        """Test that updated_at is a dateime object derived from the
+        """Test that updated_at is a datetime object derived from the
         iso format string in kwargs"""
         self.assertEqual(type(self.new.updated_at), datetime)
         self.assertIsInstance(self.new.updated_at, datetime)
@@ -145,7 +145,7 @@ class TestBaseModelWithKwargs(unittest.TestCase):
             new_instance.id
 
     def test_new_instance_is_not_original(self):
-        """Test that an instance loaded from anothers dictionary is not
+        """Test that an instance loaded from another dictionary is not
         identical to the original"""
         self.assertFalse(self.instance is self.new)
 
@@ -159,8 +159,8 @@ class TestBaseModelWithArgsAndKwargs(unittest.TestCase):
         self.kwargs = self.instance.to_dict()
         self.args = (uuid.uuid4(), datetime.now(), datetime.now())
 
-    def test_args_and_kwargs_instanciates(self):
-        """Test that kwargs is used instead of args in instanciation."""
+    def test_args_and_kwargs_instantiates(self):
+        """Test that kwargs is used instead of args in instantiation."""
         new_instance = BaseModel(*self.args, **self.kwargs)
         self.assertEqual(self.instance.__dict__, new_instance.__dict__)
 
@@ -227,7 +227,7 @@ class TestBaseModelToDictMethod(unittest.TestCase):
         """Setup variables to be used in tests"""
         self.instance = BaseModel()
 
-    def test_to_dict_return_value_type_is_dctionary(self):
+    def test_to_dict_return_value_type_is_dictionary(self):
         """Test that the to_dict method returns a dictionary"""
         self.assertIsInstance(self.instance.to_dict(), dict)
 

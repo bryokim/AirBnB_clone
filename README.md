@@ -97,7 +97,7 @@ a5999506-a045-42ac-919f-e9224183a527
 
 An object's string representation can be printed by calling the `show` command on
 that object. The show command takes the objects class and id so as to
-reconstruct its key in `FileStorage.__objects` and obtain the correspondng
+reconstruct its key in `FileStorage.__objects` and obtain the corresponding
 object to be printed.
 
 It has two syntaxes:
@@ -187,7 +187,7 @@ error message is printed as show below.
 4. **Display all objects**
 
 This can be accomplished using the `all` command.
-The command can either be called witout any arguments to print all objects
+The command can either be called without any arguments to print all objects
 or called with a specific class to print objects of that class only.
 
 Syntax:
@@ -319,7 +319,7 @@ The same happens when either the attribute name or the value is not given.
 The `count` command can be applied on a certain class to get number of
 instances of that class.
 
-Synatx:
+Syntax:
 
 - `<class name>.count()`
 

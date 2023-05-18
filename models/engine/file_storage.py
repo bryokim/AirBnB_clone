@@ -25,7 +25,7 @@ class FileStorage(object):
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """Serealizes __objects to the JSON file"""
+        """Serializes __objects to the JSON file"""
 
         objects_dict = {
             key: value.to_dict()
@@ -35,7 +35,7 @@ class FileStorage(object):
             json.dump(objects_dict, f, indent=4)
 
     def reload(self):
-        """Deserealizes the json file to __objects"""
+        """Deserializes the json file to __objects"""
 
         from models.base_model import BaseModel
         from models.user import User

@@ -109,7 +109,7 @@ class TestConsoleShow(unittest.TestCase):
         self.assertEqual(printed_str, str(instance))
 
     def test_show_with_invalid_class_and_valid_id(self):
-        """Test that show prints '** class doen't exist **' if the class name
+        """Test that show prints '** class doesn't exist **' if the class name
         is not found to be valid"""
 
         instance = BaseModel()
