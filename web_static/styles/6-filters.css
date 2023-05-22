@@ -1,0 +1,131 @@
+.filters {
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+.filters button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #000000;
+    height: 48px;
+    width: 20%;
+    border: 0;
+    border-radius: 4px;
+    float: right;
+    margin-right: 30px;
+    margin-top: 11px;
+    text-align: center;
+}
+
+.filters button:hover {
+    opacity: 80%;
+}
+
+.filters .locations,
+.filters .amenities {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+    position: relative;
+    
+}
+
+.filters .locations {
+    border-right: 1px solid #DDDDDD;
+}
+
+.filter_placeholder h3 {
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-left: 40px;
+}
+
+.filter_placeholder h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0;
+    margin-left: 40px;
+}
+
+div.popover {
+    position: absolute;
+    display: none;
+    width: 100%;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+
+    z-index: 1000;
+}
+
+ul.popover_content,
+ul.popover_content li ul {
+    list-style-type: none;
+}
+
+ul.popover_content li h2 {
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover {
+    display: inline-block;
+}
+
+.filters,
+.filters button,
+.filter_placeholder h4,
+.filter_placeholder h3,
+.filters .locations,
+.filters .amenities {
+    transition: 0.5s;
+}
+
+@media only screen and (max-width: 700px) {
+    .filters {
+        height: 60px;
+    }
+
+    .filters button {
+        height: 38px;
+        margin: 11px;
+        font-size: 1pc;
+    }
+
+    .filters .locations,
+    .filters .amenities {
+        width: 30%;
+    }
+
+    .filter_placeholder {
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .filter_placeholder h3 {
+        margin: 5px 0 0 5px;
+    }
+
+    .filter_placeholder h4 {
+        margin: 0 0 5px 5px;
+    }
+
+    div.popover {
+        overflow: scroll;
+    }
+
+    ul.popover_content {
+        padding-left: 15px;
+    }
+
+    ul.popover_content li ul {
+        padding-left: 20px;
+    }
+}
+
+@media only screen and (max-width:500px) {
+}
