@@ -76,16 +76,7 @@ ul.popover_content li h2 {
     display: inline-block;
 }
 
-.filters,
-.filters button,
-.filter_placeholder h4,
-.filter_placeholder h3,
-.filters .locations,
-.filters .amenities {
-    transition: 0.5s;
-}
-
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
     .filters {
         height: 60px;
     }
@@ -107,7 +98,7 @@ ul.popover_content li h2 {
     }
 
     .filter_placeholder h3 {
-        margin: 5px 0 0 5px;
+        margin: 10px 0 0 5px;
     }
 
     .filter_placeholder h4 {
@@ -124,5 +115,24 @@ ul.popover_content li h2 {
 
     ul.popover_content li ul {
         padding-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .filters {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        border:none;
+    }
+
+    .filters .locations,
+    .filters .amenities {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+    }
+
+    .filters button {
+        align-self: flex-end;
     }
 }
